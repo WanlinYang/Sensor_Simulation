@@ -7,7 +7,9 @@ DistanceEmulator::DistanceEmulator() :
   direction_(0.0),
   active_(false)
 {
+  // keep object in range (-10, 10) of both x and y coord
   position_limit_ = std::make_pair(10.0, 10.0);
+  // initial position of object
   position_ = std::make_pair(5.0, 5.0);
 }
 

@@ -117,7 +117,7 @@ void SensorFrontend::run() {
       std::cout << RESET << std::endl;
     }
     /** Get all output and fused distance **/
-    else if (in == "dist") {
+    else if (in == "dist" || in == "d") {
       std::cout << CYAN << "Measurements:" << std::endl;
       std::cout.precision(3); std::cout << std::fixed;
       double dist_sum = 0.0, weight_sum = 0.0;
@@ -132,8 +132,26 @@ void SensorFrontend::run() {
         }
       }
       if (weight_sum > 1e-3)
-        std::cout << "Fused distance:" << dist_sum/weight_sum << std::endl;
+        std::cout << "Fused distance: " << dist_sum/weight_sum << std::endl;
       std::cout << RESET;
+    /** Help **/
+    } else if (in == "help" || in == "h") {
+      std::cout << CYAN <<
+      "Commands:\n" << 
+      "  init laser    (il) : Initialize laser sensor\n" <<
+      "  stop laser    (sl) : Stop laser sensor\n" <<
+      "  read laser    (rl) : Read laser sensor\n" <<
+      "  init sonar    (is) : Initialize sonar sensor\n" <<
+      "  stop sonar    (ss) : Stop sonar sensor\n" <<
+      "  read sonar    (rs) : Read sonar sensor\n" <<
+      "  init infrared (ii) : Initialize IR sensor\n" <<
+      "  stop infrared (si) : Stop IR sensor\n" <<
+      "  read infrared (ri) : Read IR sensor\n" <<
+      "  status (list) (ls) : Check status of sensors\n" <<
+      "  quit           (q) : Quit the system\n" << 
+      "  dist           (d) : Output measurements of all sensors and fused measurement\n" <<
+      "  help           (h) : Show available commands\n";
+      std::cout << RESET << std::endl;
     }
     else {
       std::cout << MAGENTA << "Unknown command" << RESET << std::endl;

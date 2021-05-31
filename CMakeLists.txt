@@ -10,7 +10,7 @@ include_directories(
 
 set(CMAKE_CXX_FLAGS -pthread)
 
-add_executable(RobotDist
+add_executable(SensorSys
   src/DistanceEmulator.cpp
   src/SensorEmulator.cpp
   src/LaserEmulator.cpp

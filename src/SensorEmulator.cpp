@@ -38,6 +38,7 @@ bool SensorEmulator::deinit() {
     std::cout << CYAN << sensor_name_ << " already deinitialized" << RESET << std::endl;
     return false;
   }
+  // deinitialize and join my thread
   initialized_ = false;
   if (my_thread_->joinable())
     my_thread_->join();

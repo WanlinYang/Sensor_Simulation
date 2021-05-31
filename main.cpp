@@ -5,6 +5,7 @@
 #include "DistanceEmulator.h"
 #include "SensorFrontend.h"
 
+// function to setup config
 FrontendConfig buildConfig() {
   typedef FrontendConfig::SensorType SensorType;
   FrontendConfig config;
