@@ -19,7 +19,7 @@ The base class of `LaserEmulator`, `SonarEmulator`, `InfraredEmulator`. The emul
 * `read()`: Read measurement of sensor if the sensor is turned on
 
 #### SensorFrontend
-The main class of the sensor manage system. This class runs on the main thread and receives user input and prints output on terminal.
+The main class of the sensor manage system. This class runs on the main thread and receives user input and prints output on terminal. This module can read measurements from all active sensors and compute the fused measurement based on the weights given by user.
 
 The above classes run on different threads. `SensorFrontend` runs on the main thread, `DistanceEmulator`, `LaserEmulator`, `SonarEmulator`, `InfraredEmulator` run on their separate thread.
 
@@ -68,4 +68,14 @@ Following are commands of the software. Commands in parentheses are abbreviated 
   help           (h) : Show available commands
 ```
 
+If the user attempts to initialize unavailable sensors or read uninitialized sensors, the software will output error messages.
+
 ## Discussion
+
+The functionality of this software has already been implemented in ROS. The sensors and manage system can be different ROS nodes and they can communicate through ROS message. But it would be very challenging to construct such communication and message system from scratch. So I just used several while loop in separate threads to simulate the runtime system.
+
+The code is modularized and users can make changes easily. To simulate objects with different kinematics, such as object in 3D space, we can modify the code of `DistanceEmulator`. To add more sensors to the system, we can add classes inheriting from `SensorEmulator`. More modules can be added to the system in the future, such as Kalman Filter.
+
+There are several modules can be improved. The configuration can be written in `yaml-cpp`, so that user don’t have to recompile every time to change the parameters. It would be better if the system has a visualization tool to see the position of the simulated object.
+
+If we use a purely functional language, such as C, the sensor manage system can be refactorized directly. But the simulation modules would be harder to implement. The states of sensors can be written in C struct, and pipelines of each sensor can only be implemented as different functions rather than inheritance.
