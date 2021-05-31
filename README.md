@@ -28,12 +28,13 @@ The software is developed on Ubuntu system, and relies on standard C++ libraries
 
 ```
 git clone https://github.com/WanlinYang/Sensor_Simulation.git
-cd Sensor_Simulation
+cd Sensor_Simulation/
 ```
 
 Then compile the software
 ```
 mkdir build
+cd build
 cmake ..
 make
 ```
