@@ -1,0 +1,28 @@
+
+Sensors:
+  SensorEmulatorBase
+      init(): return true if sensor available
+      read(): return double in meters, throw exception if not init
+      deinit(): "turn off" sensor
+
+      ^               ^               ^
+      |               |               |
+    LaserEmulator   SonarEmulator    InfraredEmulator
+
+  configs: frequency
+
+  EmulatorBuilder
+    need a config file
+
+
+User:
+  SensorFrontend
+    turnOn, turnOff: at runtime
+    queryStates
+    sampling: private method
+    getFusedDistance
+
+  config: initial sensors
+          weights
+          sampling frequency
+
